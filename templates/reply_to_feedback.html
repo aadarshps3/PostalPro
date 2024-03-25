@@ -1,0 +1,15 @@
+<!-- In templates/feedback/reply_to_feedback.html -->
+
+{% extends 'staffpage.html' %}
+
+{% block content %}
+  <h2>Reply to Feedback</h2>
+  <p>Feedback from: {{ feedback.user.username }}</p>
+  <p>Subject: {{ feedback.subject }}</p>
+  <p>Message: {{ feedback.message }}</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Reply</button>
+  </form>
+{% endblock %}

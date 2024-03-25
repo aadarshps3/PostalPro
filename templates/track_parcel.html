@@ -1,0 +1,14 @@
+{% extends 'customerpage.html' %}
+{% block content %}
+<!-- Display list of parcels with their current status and link to detail page -->
+<div class="card">
+    <div class="card-body">
+<ul>
+{% for parcel in parcels %}
+    <li><b>{{ parcel.parcel.tracking_number }} </b> - Status: {{ parcel.status }} <a href="{% url 'parcel_detail' parcel.id %}">Details</a></li>
+{% endfor %}
+</ul>
+    </div>
+    </div>
+
+{% endblock %}

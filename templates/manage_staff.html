@@ -1,0 +1,45 @@
+{% extends 'adminpage.html' %}
+{% block content %}
+ <h1>Manage Staff</h1>
+
+   <div class="card">
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">STAFF DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+    <tr>
+        <th scope="col">SI NO</th>
+        <th scope="col">NAME</th>
+        <th scope="col">DESIGNATION</th>
+        <th scope="col">EMP ID</th>
+        <th scope="col">PHOTO</th>
+        <th scope="col">EMAIL ID</th>
+        <th scope="col">PHONE NO</th>
+        <th scope="col">SHIFT TIME</th>
+    </tr>
+                </thead>
+                <tbody>
+    {% for i in staff %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.Name}}</td>
+        <td>{{i.Designation}}</td>
+        <td>{{i.Emp_ID}}</td>
+        <td><img src="{{i.Photo.url}}" height="100px"> </td>
+        <td>{{i.Email_Id}}</td>
+        <td>{{i.Phone_No}}</td>
+         <td>
+             <a href="{% url 'add_shift' %}">Add Shift Time</a>
+         </td>
+    </tr>
+    {% endfor %}
+                </tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}

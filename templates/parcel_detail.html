@@ -1,0 +1,14 @@
+{% extends 'customerpage.html' %}
+{% block content %}
+<!-- Display parcel details including current status -->
+<div class="card">
+    <div class="card-body">
+<h2>Parcel Details</h2>
+<p>Tracking Number: {{ parcel.parcel.tracking_number }}</p>
+<p>Description: {{ parcel.parcel.description }}</p>
+<p>Weight: {{ parcel.parcel.weight }}</p>
+<p>Status: {{ parcel.status }}</p>
+<p>Created At: {{ parcel.parcel.created_at }}</p>
+</div>
+    </div>
+{% endblock %}

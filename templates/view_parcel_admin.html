@@ -1,0 +1,54 @@
+{% extends 'adminpage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">PARCEL DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+    <tr>
+        <th scope="col">SI NO</th>
+        <th scope="col">TRACKING NUMBER</th>
+        <th scope="col">DESCRIPTION</th>
+        <th scope="col">WEIGHT</th>
+        <th scope="col">IMAGE</th>
+        <th scope="col">LOCATION</th>
+        <th scope="col">ACTION</th>
+<!--        <th scope="col">AADHAR</th>-->
+<!--        <th scope="col">ACTION</th>-->
+    </tr>
+                </thead>
+                <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.tracking_number}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.weight}}</td>
+        <td><img src="{{i.Images.url}}" height="100px"> </td>
+        <td>{{i.Live_Location}}</td>
+        <td>
+            {% if i.approval_status == 0 %}
+            <button class="btn-sm btn btn-primary ">Approval Pending</button>
+            {% elif i.approval_status == 1 %}
+            <a href="{% url 'track_parcel' %}" class="btn-sm btn btn-primary ">Track <b> {{i.user}}</b>'s Parcel</a>
+            {% else %}
+            <button class="btn-sm btn btn-warning ">Rejected</button>
+            {% endif %}
+        </td>
+<!--        <td><img src="{{i.Aadhar_Proof.url}}" height="100px"> </td>-->
+
+    </tr>
+    {% endfor %}
+                </tbody>
+</table>
+</div>
+</div>
+</div>
+
+{% endblock %}

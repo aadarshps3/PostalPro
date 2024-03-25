@@ -1,0 +1,41 @@
+{% extends 'adminpage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">CUSTOMER DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+    <tr>
+        <th scope="col">SI NO</th>
+        <th scope="col">NAME</th>
+        <th scope="col">START TIME</th>
+        <th scope="col">END TIME</th>
+<!--        <th scope="col">AADHAR</th>-->
+<!--        <th scope="col">ACTION</th>-->
+    </tr>
+                </thead>
+                <tbody>
+    {% for i in shifts %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.start_time}}</td>
+        <td>{{i.end_time}}</td>
+
+<!--        <td><img src="{{i.Aadhar_Proof.url}}" height="100px"> </td>-->
+
+    </tr>
+    {% endfor %}
+                </tbody>
+</table>
+</div>
+</div>
+</div>
+
+{% endblock %}

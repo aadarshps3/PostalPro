@@ -1,0 +1,20 @@
+{% extends 'customerpage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+    <a href="{% url 'Feedback_view_user' %}" class="btn btn-secondary" style="margin-left:900px">View FeedBacks</a>
+</div>
+<div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Enquiry</h4>
+                  <form class="forms-sample" method="post">
+                      {% csrf_token %}
+                      {{form|crispy}}
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+{% endblock %}

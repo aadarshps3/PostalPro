@@ -1,0 +1,15 @@
+{% extends 'adminpage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="margin-left:900px">
+<a href="{% url 'View_PO' %}" class="btn btn-primary" >VIEW POSTOFFICES</a>
+    </div>
+<form method="post">
+    <h2>ADD POSTOFFICE</h2>
+    {% csrf_token %}
+    <div>
+    {{form|crispy}}
+        </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{% endblock %}

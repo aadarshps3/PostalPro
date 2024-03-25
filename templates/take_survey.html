@@ -1,0 +1,11 @@
+{% extends 'customerpage.html' %}
+{% block content %}
+{% for i in survey%}
+<h3>{{i.question}}</h3>
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Survey</button>
+</form>
+{% endblock %}
