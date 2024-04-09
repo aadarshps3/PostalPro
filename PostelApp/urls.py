@@ -24,6 +24,8 @@ urlpatterns=[
     path('View_PO',adminviews.View_PO,name='View_PO'),
     path('AddSurvey',adminviews.AddSurvey,name='AddSurvey'),
     path('viewSurvey',adminviews.viewSurvey,name='viewSurvey'),
+    path('view_scanned_parcels',adminviews.view_scanned_parcels,name='view_scanned_parcels'),
+    path('approve_parcel_admin/<int:id>/',adminviews.approve_parcel_admin,name='approve_parcel_admin'),
     # path('add_parcel',adminviews.add_parcel,name='add_parcel'),
 
 
@@ -33,6 +35,8 @@ urlpatterns=[
     path('View_Time',staffviews.View_Time,name='View_Time'),
     path('view_feedback',staffviews.view_feedback,name='view_feedback'),
     path('reply_Feedback/<int:id>/',staffviews.reply_Feedback,name='reply_Feedback'),
+    path('scan_parcels',staffviews.scan_parcels,name='scan_parcels'),
+    path('view_scanned',staffviews.view_scanned,name='view_scanned'),
 
 
 
@@ -43,4 +47,5 @@ urlpatterns=[
     path('add_feedback', customerviews.add_feedback, name='add_feedback'),
     path('Feedback_view_user', customerviews.Feedback_view_user, name='Feedback_view_user'),
     path('take_survey', customerviews.take_survey, name='take_survey'),
+    path('view_parcels_cus', customerviews.view_parcels_cus, name='view_parcels_cus'),
 ]

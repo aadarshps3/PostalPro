@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 
 from PostelApp.forms import ParcelForm, StaffForm, shiftform, PO, Surveyadd
 from PostelApp.models import PostalStaff, Customers, Parcel, Shift, PostOffice, SurveyResponse
@@ -101,3 +103,16 @@ def AddSurvey(request):
 def viewSurvey(request):
     data = SurveyResponse.objects.all()
     return render(request,'viewSurvey.html',{'data':data})
+
+def view_scanned_parcels(request):
+    data = Parcel.objects.all()
+    return render(request,'view_scanned_parcels.html',{'data':data})
+
+def approve_parcel_admin(request, id):
+    student = Parcel.objects.get(user_id=id)
+    student.approval_status = True
+    student.save()
+    messages.info(request, "Registered Successfully")
+    return redirect('view_scanned_parcels')
+
+

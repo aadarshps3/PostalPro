@@ -53,12 +53,21 @@
                 <span class="hide-menu">View Customers</span>
               </a>
             </li>
+
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{% url 'viewparcel' %}" aria-expanded="false">
+              <a class="sidebar-link" href="{% url 'scan_parcels' %}" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
-                <span class="hide-menu">View Parcels</span>
+                <span class="hide-menu">Scan Parcels</span>
+              </a>
+            </li>
+               <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'view_scanned' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu">View Scanned Parcels</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -77,14 +86,14 @@
                 <span class="hide-menu">Feedbacks</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-typography"></i>
-                </span>
-                <span class="hide-menu">Typography</span>
-              </a>
-            </li>
+<!--            <li class="sidebar-item">-->
+<!--              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">-->
+<!--                <span>-->
+<!--                  <i class="ti ti-typography"></i>-->
+<!--                </span>-->
+<!--                <span class="hide-menu">Typography</span>-->
+<!--              </a>-->
+<!--            </li>-->
 <!--            <li class="nav-small-cap">-->
 <!--              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>-->
 <!--              <span class="hide-menu">AUTH</span>-->

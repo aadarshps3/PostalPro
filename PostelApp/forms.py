@@ -32,7 +32,7 @@ class ParcelForm(forms.ModelForm):
     Expected_delivery_date = forms.DateField(widget=DateInput)
     class Meta:
         model = Parcel
-        fields = ['tracking_number', 'description', 'weight', 'Images', 'Live_Location','Expected_delivery_date','Your_POSTOFFICE']
+        fields = ['user','tracking_number', 'description', 'weight', 'Images', 'Live_Location','Expected_delivery_date','POSTOFFICE']
 
 class shiftform(forms.ModelForm):
     start_time = forms.TimeField(widget=TimeInput)

@@ -42,14 +42,14 @@ class PostOffice(models.Model):
         return self.Name
 
 class Parcel(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Customers, on_delete=models.CASCADE)
     tracking_number = models.CharField(max_length=100)
     description = models.TextField()
     weight = models.DecimalField(max_digits=5, decimal_places=2)
     Images = models.ImageField(upload_to='parcel')
     Live_Location = models.CharField(max_length=100)
     Expected_delivery_date = models.DateField()
-    Your_POSTOFFICE = models.ForeignKey(PostOffice,on_delete=models.CASCADE)
+    POSTOFFICE = models.ForeignKey(PostOffice,on_delete=models.CASCADE)
     status = models.CharField(max_length=50, default='In Transit')
     created_at = models.DateTimeField(auto_now_add=True)
     approval_status = models.BooleanField(default=0)

@@ -40,3 +40,16 @@ def reply_Feedback(request, id):
         messages.info(request, 'Reply send for complaint')
         return redirect('view_feedback')
     return render(request, 'reply_Feedback.html', {'feedback': f})
+
+def scan_parcels(request):
+    form = ParcelForm()
+    if request.method == 'POST':
+        form = ParcelForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('view_scanned')
+    return render(request,'scan_parcels.html',{'form':form})
+
+def view_scanned(request):
+    data = Parcel.objects.all()
+    return render(request,'view_scanned.html',{'data':data})

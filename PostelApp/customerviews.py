@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from PostelApp.forms import ParcelForm, FeedbackForm, SurveyResponseForm
-from PostelApp.models import ParcelTracking, Parcel, Feedback, Survey
+from PostelApp.models import ParcelTracking, Parcel, Feedback, Survey, Customers
 
 
 @login_required
@@ -65,3 +65,8 @@ def take_survey(request):
             data.save()
             return redirect('customerpage')
     return render(request, 'take_survey.html', {'form':form,'survey':survey})
+
+def view_parcels_cus(request):
+    u=Customers.objects.get(user=request.user)
+    data = Parcel.objects.filter(user=u,approval_status=1)
+    return render(request,'view_parcels_cus.html',{'data':data})
