@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 
@@ -109,10 +110,13 @@ def view_scanned_parcels(request):
     return render(request,'view_scanned_parcels.html',{'data':data})
 
 def approve_parcel_admin(request, id):
-    student = Parcel.objects.get(user_id=id)
-    student.approval_status = True
-    student.save()
-    messages.info(request, "Registered Successfully")
+    parcels = Parcel.objects.filter(user_id=id)
+    if not parcels.exists():
+        return HttpResponseNotFound("No parcels found for this user")
+    for parcel in parcels:
+        parcel.approval_status = True
+        parcel.save()
+    messages.info(request, "Parcels approved successfully")
     return redirect('view_scanned_parcels')
 
 
