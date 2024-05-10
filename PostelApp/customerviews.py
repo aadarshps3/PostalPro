@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
 
 from PostelApp.forms import ParcelForm, FeedbackForm, SurveyResponseForm
@@ -68,5 +69,12 @@ def take_survey(request):
 
 def view_parcels_cus(request):
     u=Customers.objects.get(user=request.user)
-    data = Parcel.objects.filter(user=u,approval_status=1)
+    data = Parcel.objects.filter(user=u)
     return render(request,'view_parcels_cus.html',{'data':data})
+
+def approve_parcel_cus(request,id):
+    ow = Parcel.objects.get(id=id)
+    ow.approval_status = 2
+    ow.save()
+    messages.info(request, 'approved')
+    return redirect('view_parcels_cus')

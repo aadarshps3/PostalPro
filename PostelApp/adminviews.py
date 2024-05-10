@@ -114,7 +114,7 @@ def approve_parcel_admin(request, id):
     if not parcels.exists():
         return HttpResponseNotFound("No parcels found for this user")
     for parcel in parcels:
-        parcel.approval_status = True
+        parcel.approval_status = 1
         parcel.save()
     messages.info(request, "Parcels approved successfully")
     return redirect('view_scanned_parcels')

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from PostelApp import views, adminviews, staffviews, customerviews
+from PostelApp.staffviews import MonthlyReportView
 
 urlpatterns=[
     path('',views.homepage,name='homepage'),
@@ -37,6 +38,7 @@ urlpatterns=[
     path('reply_Feedback/<int:id>/',staffviews.reply_Feedback,name='reply_Feedback'),
     path('scan_parcels',staffviews.scan_parcels,name='scan_parcels'),
     path('view_scanned',staffviews.view_scanned,name='view_scanned'),
+    path('MonthlyReportView', MonthlyReportView.as_view(), name='MonthlyReportView'),
 
 
 
@@ -48,4 +50,5 @@ urlpatterns=[
     path('Feedback_view_user', customerviews.Feedback_view_user, name='Feedback_view_user'),
     path('take_survey', customerviews.take_survey, name='take_survey'),
     path('view_parcels_cus', customerviews.view_parcels_cus, name='view_parcels_cus'),
+    path('approve_parcel_cus/<int:id>/', customerviews.approve_parcel_cus, name='approve_parcel_cus'),
 ]

@@ -7,6 +7,13 @@ class User(AbstractUser):
     is_postalstaff=models.BooleanField(default=False)
     is_customer=models.BooleanField(default=False)
 
+class PostOffice(models.Model):
+    Name = models.CharField(max_length=100)
+    PIN_code = models.CharField(max_length=6)
+    Address = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.Name} - {self.PIN_code}"
 class PostalStaff(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True,related_name="Postalstaff")
     Name=models.CharField(max_length=100)
@@ -14,6 +21,7 @@ class PostalStaff(models.Model):
     Emp_ID=models.CharField(max_length=100)
     Photo=models.ImageField(upload_to='Staff')
     Email_Id=models.EmailField()
+    PIN_code = models.ForeignKey(PostOffice, on_delete=models.CASCADE,null=True,blank=True)
     Phone_No=models.CharField(max_length=10)
     approval_status = models.BooleanField(default=0)
 
@@ -26,20 +34,15 @@ class Customers(models.Model):
     Address=models.CharField(max_length=255)
     Phone_No=models.CharField(max_length=10)
     Email=models.EmailField()
+    PIN_code = models.ForeignKey(PostOffice,on_delete=models.CASCADE)
     Photo=models.ImageField(upload_to='customer')
     Aadhar_Proof=models.ImageField(upload_to='Aadhar')
     approval_status = models.BooleanField(default=0)
 
     def __str__(self):
-        return self.Name
+        return f"{self.Name} - {self.Address}"
 
-class PostOffice(models.Model):
-    Name = models.CharField(max_length=100)
-    PIN_code = models.CharField(max_length=6)
-    Address = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.Name
 
 class Parcel(models.Model):
     user = models.ForeignKey(Customers, on_delete=models.CASCADE)
@@ -52,7 +55,7 @@ class Parcel(models.Model):
     POSTOFFICE = models.ForeignKey(PostOffice,on_delete=models.CASCADE)
     status = models.CharField(max_length=50, default='In Transit')
     created_at = models.DateTimeField(auto_now_add=True)
-    approval_status = models.BooleanField(default=0)
+    approval_status = models.IntegerField(default=0)
 
 
     def __str__(self):

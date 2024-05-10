@@ -38,6 +38,8 @@
             <button class="btn-sm btn btn-primary ">Approval Pending</button>
             {% elif i.approval_status == 1 %}
             <button class="btn btn-success">Parcel Out for Delivery</button>
+            {% elif i.approval_status == 2 %}
+            <button class="btn btn-success">Customer Available for this Date</button>
             {% else %}
             <button class="btn-sm btn btn-warning ">Rejected</button>
             {% endif %}
