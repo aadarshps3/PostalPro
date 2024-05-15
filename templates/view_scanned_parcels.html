@@ -40,7 +40,7 @@
             {% elif i.approval_status == 1 %}
             <button class="btn-sm btn btn-primary ">Approved</button>
             {% elif i.approval_status == 2 %}
-            <button class="btn-sm btn btn-primary ">Customer Available </button>
+            <button class="btn-sm btn btn-primary ">Customer Available on {{i.Expected_delivery_date}}</button>
             {% else %}
             <button class="btn-sm btn btn-warning ">Rejected</button>
             {% endif %}

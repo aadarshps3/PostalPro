@@ -18,8 +18,7 @@
         <th scope="col">WEIGHT</th>
         <th scope="col">IMAGE</th>
         <th scope="col">LOCATION</th>
-        <th scope="col">STATUS</th>
-        <th scope="col">DELIVERY DATE</th>
+        <th scope="col">DATE CONFIRMATION</th>
         <th scope="col">DOWNLOAD</th>
 <!--        <th scope="col">AADHAR</th>-->
 <!--        <th scope="col">ACTION</th>-->
@@ -39,14 +38,14 @@
             {% if i.approval_status == 0 %}
             <button class="btn-sm btn btn-primary ">Approval Pending</button>
             {% elif i.approval_status == 1 %}
-            <a class="btn btn-warning" href="{% url 'approve_parcel_cus' i.id %}">Confirm this date</a>
+            <a class="btn btn-warning" href="{% url 'approve_parcel_cus' i.id %}">Confirm this date {{i.Expected_delivery_date}}</a>
+            <a class="btn btn-secondary" href="{% url 'update_expected_delivery_date' i.id %}">Change Delivery Date</a>
             {% elif i.approval_status == 2 %}
             <button class="btn btn-success">Parcel Confirmed</button>
             {% else %}
             <button class="btn-sm btn btn-warning ">Rejected</button>
             {% endif %}
         </td>
-         <td>{{i.Expected_delivery_date}}</td>
         <td><a href="{{i.Images.url}}" download>Download your Parcel</a></td>
 <!--        <td><img src="{{i.Aadhar_Proof.url}}" height="100px"> </td>-->
 

@@ -62,3 +62,9 @@ class Surveyadd(forms.ModelForm):
     class Meta:
         model = Survey
         fields = '__all__'
+
+class UpdateExpectedDeliveryDateForm(forms.ModelForm):
+    Expected_delivery_date = forms.DateField(widget=DateInput)
+    class Meta:
+        model = Parcel
+        fields = ['Expected_delivery_date']

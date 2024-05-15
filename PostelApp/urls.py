@@ -1,6 +1,7 @@
 from django.urls import path
 
 from PostelApp import views, adminviews, staffviews, customerviews
+from PostelApp.customerviews import update_expected_delivery_date
 from PostelApp.staffviews import MonthlyReportView
 
 urlpatterns=[
@@ -51,4 +52,5 @@ urlpatterns=[
     path('take_survey', customerviews.take_survey, name='take_survey'),
     path('view_parcels_cus', customerviews.view_parcels_cus, name='view_parcels_cus'),
     path('approve_parcel_cus/<int:id>/', customerviews.approve_parcel_cus, name='approve_parcel_cus'),
+    path('update_expected_delivery_date/<int:parcel_id>/update_delivery_date/', update_expected_delivery_date, name='update_expected_delivery_date'),
 ]

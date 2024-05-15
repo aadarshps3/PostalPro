@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from django.views import View
 
-from PostelApp.forms import ParcelForm, FeedbackForm, SurveyResponseForm
+from PostelApp.forms import ParcelForm, FeedbackForm, SurveyResponseForm, UpdateExpectedDeliveryDateForm
 from PostelApp.models import ParcelTracking, Parcel, Feedback, Survey, Customers
 
 
@@ -78,3 +80,14 @@ def approve_parcel_cus(request,id):
     ow.save()
     messages.info(request, 'approved')
     return redirect('view_parcels_cus')
+
+def update_expected_delivery_date(request, parcel_id):
+    parcel = get_object_or_404(Parcel, id=parcel_id)
+    if request.method == 'POST':
+        form = UpdateExpectedDeliveryDateForm(request.POST, instance=parcel)
+        if form.is_valid():
+            form.save()
+            return redirect('view_parcels_cus')  # Redirect to parcel detail page
+    else:
+        form = UpdateExpectedDeliveryDateForm(instance=parcel)
+    return render(request, 'update_expected_delivery_date.html', {'form': form})
