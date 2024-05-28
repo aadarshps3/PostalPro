@@ -75,11 +75,13 @@ class MonthlyReportView(View):
 
         writer = csv.writer(response)
         writer.writerow(
-            ['Tracking Number', 'Description', 'Weight', 'Live Location', 'Expected Delivery Date', 'Status',
+            ['user','Address','Tracking Number', 'Description', 'Weight', 'Live Location', 'Expected Delivery Date', 'Status',
              'Created At'])
 
         for parcel in parcels:
             writer.writerow([
+                parcel.user,
+                parcel.user.Address,
                 parcel.tracking_number,
                 parcel.description,
                 parcel.weight,
